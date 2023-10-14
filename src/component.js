@@ -1,68 +1,88 @@
+// Please add the required dependencies 
+// and imports manually 
 import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
-  constructor() {
-    super();
+    constructor(){
+        super();
 
-    this.state = {
-      result: ""
+        this.state = {
+            result: ""
+        }
     }
-  }
 
-  onClick = (button) => {
-    if (button === "=") {
-      this.calculate();
-    } else if (button === "C") {
-      this.reset();
-    } else if (button === "CE") {
-      this.backspace();
-    } else {
-      this.setState({
-        result: this.state.result + button
-      });
-    }
-  };
+    onClick = button => {
 
-  calculate = () => {
-    try {
-      this.setState({
-        result: (eval(this.state.result) || "") + ""
-      });
-    } catch (e) {
-      this.setState({
-        result: "error"
-      });
-    }
-  };
+        if(button === "="){
+            this.calculate()
+        }
 
-  reset = () => {
-    this.setState({
-      result: ""
-    });
-  };
+        else if(button === "C"){
+            this.reset()
+        }
+        else if(button === "CE"){
+            this.backspace()
+        }
 
-  backspace = () => {
-    this.setState({
-      result: this.state.result.slice(0, -1)
-    });
-  };
+        else {
+            this.setState({
+                result: this.state.result + button
+            })
+        }
+    };
 
-  render() {
-    return (
-      <div className="App">
-        <div className="calculator-body">
-          <h1>React Calculator</h1>
-          <div className="result">
-            {this.state.result}
+    calculate = () => {
+        try {
+            this.setState({
+                // eslint-disable-next-line
+                result: (eval(this.state.result) || "" ) + ""
+            })
+        } catch (e) {
+            this.setState({
+                result: "error"
+            })
+
+        }
+    };
+
+    reset = () => {
+        this.setState({
+            result: ""
+        })
+    };
+
+    backspace = () => {
+        this.setState({
+            result: this.state.result.slice(0, -1)
+        })
+    };
+
+    render() {
+      return (
+          <div>
+            <div className="calculator-body">
+              <h1>React Calculator</h1>
+              <ResultComponent result={this.state.result}/>
+              <KeyPadComponent onClick={this.onClick}/>
+            </div>
           </div>
-          <KeyPadComponent onClick={this.onClick} />
-        </div>
-      </div>
-    );
-  }
+      );
+    }
 }
 
+class ResultComponent extends Component {
+
+  render() {
+    let {result} = this.props;
+    return (
+      <div className="result">
+        <p>{result}</p>
+      </div>
+    )
+    ;
+  }
+}
 class KeyPadComponent extends Component {
   render() {
     return (
@@ -92,4 +112,3 @@ class KeyPadComponent extends Component {
   }
 }
 
-export default App;

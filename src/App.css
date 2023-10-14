@@ -1,38 +1,104 @@
+/* App container */
 .App {
   text-align: center;
+  font-family: Arial, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Calculator container */
+.calculator-body {
+  width: 400px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  padding: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Calculator title */
+h1 {
+  font-size: 24px;
+  margin: 0 0 20px;
+  color: #333;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Result display */
+.result {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 36px;
+  text-align: right;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+/* Calculator buttons */
+.button {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Calculator button styling */
+.button button {
+  padding: 15px;
+  font-size: 24px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #e0e0e0;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.button button:hover {
+  background-color: #ccc;
+}
+
+/* Styling for specific buttons */
+.button button[name="="] {
+  background-color: #ff9900;
+  color: #fff;
+}
+
+.button button[name="="]:hover {
+  background-color: #ff6600;
+}
+
+.button button[name="C"],
+.button button[name="CE"] {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.button button[name="C"]:hover,
+.button button[name="CE"]:hover {
+  background-color: #c0392b;
+}
+
+.button button[name="0"] {
+  grid-column: span 2;
+}
+
+/* Additional button styles */
+.button button[name="("],
+.button button[name=")"] {
+  font-size: 30px;
+  background-color: #f5f5f5;
+}
+
+/* Operator buttons */
+.button button[name="+"],
+.button button[name="-"],
+.button button[name="*"],
+.button button[name="/"] {
+  font-size: 30px;
+  background-color: #ffcc66;
+}
+
+.button button[name="+"],
+.button button[name="-"]:hover,
+.button button[name="*"]:hover,
+.button button[name="/"]:hover {
+  background-color: #ffaa33;
 }
